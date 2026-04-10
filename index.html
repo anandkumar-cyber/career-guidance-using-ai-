@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Assistant | Discover the Right Path</title>
+  <meta
+    name="description"
+    content="Career Assistant helps students discover career options, matching skills, and step-by-step roadmaps based on their interests."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <div class="brand">
+          <span class="brand-mark">CA</span>
+          <div>
+            <p class="brand-name">Career Assistant</p>
+            <p class="brand-subtitle">AI-guided student career discovery</p>
+          </div>
+        </div>
+        <a class="topbar-link" href="#planner">Start exploring</a>
+      </nav>
+
+      <div class="hero-grid">
+        <section class="hero-copy">
+          <p class="eyebrow">Designed for uncertain students</p>
+          <h1>
+            Find a career path that matches
+            <span>what you enjoy</span>
+            and what you are good at.
+          </h1>
+          <p class="hero-text">
+            Career Assistant helps students who are confused about what to pursue. Share your interests,
+            favorite subjects, and working style, and get personalized career opportunities with a roadmap
+            for each option.
+          </p>
+
+          <div class="hero-actions">
+            <a class="primary-btn" href="#planner">Discover career paths</a>
+            <a class="secondary-btn" href="#how-it-works">See how it works</a>
+          </div>
+
+          <div class="hero-stats">
+            <article>
+              <strong>3</strong>
+              <span>recommended career paths</span>
+            </article>
+            <article>
+              <strong>4-step</strong>
+              <span>roadmap for each path</span>
+            </article>
+            <article>
+              <strong>Student-first</strong>
+              <span>clear language and guidance</span>
+            </article>
+          </div>
+        </section>
+
+        <aside class="hero-panel">
+          <p class="panel-label">Example student profile</p>
+          <h2>Coding + Maths</h2>
+          <p class="panel-text">
+            A student who enjoys coding, loves mathematics, and likes solving logical problems can explore
+            careers such as software engineering, data science, AI engineering, and quantitative analysis.
+          </p>
+
+          <div class="mini-roadmap">
+            <div>
+              <span>01</span>
+              <p>Strengths identified</p>
+            </div>
+            <div>
+              <span>02</span>
+              <p>Best-fit careers matched</p>
+            </div>
+            <div>
+              <span>03</span>
+              <p>Skills and tools suggested</p>
+            </div>
+            <div>
+              <span>04</span>
+              <p>Roadmap built step by step</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <main>
+      <section class="feature-strip" id="how-it-works">
+        <article class="feature-card">
+          <p class="feature-index">01</p>
+          <h3>Understand the student</h3>
+          <p>Capture interests, strongest subjects, personality traits, and the kind of work the student enjoys.</p>
+        </article>
+        <article class="feature-card">
+          <p class="feature-index">02</p>
+          <h3>Match career opportunities</h3>
+          <p>Turn those interests into practical career options instead of vague motivational advice.</p>
+        </article>
+        <article class="feature-card">
+          <p class="feature-index">03</p>
+          <h3>Show a roadmap</h3>
+          <p>Give each career path a next-step plan so the student knows what to learn and what to do next.</p>
+        </article>
+      </section>
+
+      <section class="premium-strip">
+        <article class="premium-panel premium-panel-wide">
+          <p class="eyebrow">Premium experience</p>
+          <h2>More than a suggestion list</h2>
+          <p>
+            The upgraded experience turns student interests into a polished career report with fit analysis,
+            strengths alignment, and an action-focused roadmap.
+          </p>
+        </article>
+        <article class="premium-panel">
+          <p class="premium-kicker">Best for</p>
+          <h3>School students</h3>
+          <p>Especially useful for students who know what they like but do not know which career direction to trust.</p>
+        </article>
+        <article class="premium-panel">
+          <p class="premium-kicker">Outcome</p>
+          <h3>Clear next steps</h3>
+          <p>Every recommendation includes skills, focus areas, and a roadmap that feels practical.</p>
+        </article>
+      </section>
+
+      <section class="trust-strip">
+        <article class="trust-card">
+          <p class="trust-label">Assessment style</p>
+          <h3>Student-first guidance</h3>
+          <p>Built to reduce confusion and turn vague interests into clear, realistic next moves.</p>
+        </article>
+        <article class="trust-card">
+          <p class="trust-label">Report format</p>
+          <h3>Presentation-ready output</h3>
+          <p>Each result is organized like a compact advisory report that can also be printed cleanly.</p>
+        </article>
+        <article class="trust-card">
+          <p class="trust-label">Focus</p>
+          <h3>Career clarity</h3>
+          <p>Designed to help students compare strong options instead of getting lost in too many choices.</p>
+        </article>
+      </section>
+
+      <section class="planner-section" id="planner">
+        <div class="section-heading">
+          <p class="eyebrow">Career planner</p>
+          <h2>Tell the assistant about the student</h2>
+          <p>
+            Fill in the details below. The assistant will suggest career paths, core skills, and a roadmap for each one.
+          </p>
+        </div>
+
+        <div class="planner-layout">
+          <form class="planner-card" id="career-form">
+            <div class="input-mode-card">
+              <p class="panel-label">Choose how to describe the student</p>
+              <div class="choice-grid">
+                <label class="choice-option">
+                  <input type="radio" name="inputMode" value="guided" checked>
+                  <span>
+                    <strong>Guided form</strong>
+                    <small>Use structured fields like interests, strengths, and stream.</small>
+                  </span>
+                </label>
+                <label class="choice-option">
+                  <input type="radio" name="inputMode" value="description">
+                  <span>
+                    <strong>Full description</strong>
+                    <small>Write the student's complete profile in your own words.</small>
+                  </span>
+                </label>
+                <label class="choice-option">
+                  <input type="radio" name="inputMode" value="both">
+                  <span>
+                    <strong>Use both</strong>
+                    <small>Combine structured answers with a detailed written summary.</small>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <label class="field">
+                <span>Student name</span>
+                <input id="studentName" name="studentName" type="text" placeholder="Aarav">
+              </label>
+
+              <label class="field">
+                <span>Class or grade</span>
+                <select id="studentGrade" name="studentGrade">
+                  <option value="">Choose one</option>
+                  <option value="Class 8">Class 8</option>
+                  <option value="Class 9">Class 9</option>
+                  <option value="Class 10">Class 10</option>
+                  <option value="Class 11">Class 11</option>
+                  <option value="Class 12">Class 12</option>
+                  <option value="1st Year College">1st Year College</option>
+                  <option value="2nd Year College">2nd Year College</option>
+                  <option value="3rd Year College">3rd Year College</option>
+                  <option value="Beginner learner">Beginner learner</option>
+                  <option value="other">Other / Write manually</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Custom class or stage</span>
+              <input id="studentStageCustom" name="studentStageCustom" type="text" placeholder="Example: Gap year student or diploma learner">
+            </label>
+
+            <div class="field">
+              <span>Interests</span>
+              <div class="interest-grid">
+                <label class="choice-option compact-option">
+                  <input type="checkbox" name="interestTags" value="Coding">
+                  <span><strong>Coding</strong></span>
+                </label>
+                <label class="choice-option compact-option">
+                  <input type="checkbox" name="interestTags" value="Mathematics">
+                  <span><strong>Mathematics</strong></span>
+                </label>
+                <label class="choice-option compact-option">
+                  <input type="checkbox" name="interestTags" value="Robotics">
+                  <span><strong>Robotics</strong></span>
+                </label>
+                <label class="choice-option compact-option">
+                  <input type="checkbox" name="interestTags" value="Design">
+                  <span><strong>Design</strong></span>
+                </label>
+                <label class="choice-option compact-option">
+                  <input type="checkbox" name="interestTags" value="Business">
+                  <span><strong>Business</strong></span>
+                </label>
+                <label class="choice-option compact-option">
+                  <input type="checkbox" name="interestTags" value="Writing">
+                  <span><strong>Writing</strong></span>
+                </label>
+                <label class="choice-option compact-option">
+                  <input type="checkbox" name="interestTags" value="Research">
+                  <span><strong>Research</strong></span>
+                </label>
+                <label class="choice-option compact-option">
+                  <input type="checkbox" name="interestTags" value="Problem solving">
+                  <span><strong>Problem solving</strong></span>
+                </label>
+              </div>
+            </div>
+
+            <label class="field">
+              <span>Write more interests</span>
+              <input id="interests" name="interests" type="text" placeholder="Example: Building apps, AI, gaming, finance, storytelling">
+            </label>
+
+            <label class="field">
+              <span>Favorite subjects</span>
+              <input id="subjects" name="subjects" type="text" placeholder="Mathematics, computer science, physics">
+            </label>
+
+            <label class="field">
+              <span>Strengths</span>
+              <input id="strengths" name="strengths" type="text" placeholder="Logical thinking, creativity, communication">
+            </label>
+
+            <label class="field">
+              <span>Academic stream</span>
+              <select id="stream" name="stream">
+                <option value="">Choose one</option>
+                <option value="science">Science</option>
+                <option value="commerce">Commerce</option>
+                <option value="arts">Arts / Humanities</option>
+                <option value="general">General / Not decided yet</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Work style</span>
+              <select id="workStyle" name="workStyle">
+                <option value="">Choose one</option>
+                <option value="creative">Creative and idea-driven</option>
+                <option value="analytical">Analytical and detail-focused</option>
+                <option value="practical">Practical and hands-on</option>
+                <option value="leadership">Leadership and people-oriented</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Goals or confusion</span>
+              <textarea
+                id="goals"
+                name="goals"
+                rows="5"
+                placeholder="Example: I enjoy coding and maths but I do not know whether I should become a software engineer, data scientist, or AI engineer."
+              ></textarea>
+            </label>
+
+            <label class="field">
+              <span>Dream outcome</span>
+              <textarea
+                id="dreamOutcome"
+                name="dreamOutcome"
+                rows="4"
+                placeholder="Example: I want a future-ready career where I can solve challenging problems, build useful things, and keep growing."
+              ></textarea>
+            </label>
+
+            <label class="field">
+              <span>Full student description</span>
+              <textarea
+                id="studentDescription"
+                name="studentDescription"
+                rows="5"
+                placeholder="Example: This student is in class 11, enjoys coding and mathematics, likes solving logical problems, and wants a future-ready career but is unsure whether software engineering, AI, or data science is the best path."
+              ></textarea>
+            </label>
+
+            <button class="primary-btn submit-btn" type="submit" id="submitBtn">
+              <span class="btn-spinner" id="btnSpinner" aria-hidden="true"></span>
+              <span id="btnLabel">Generate career roadmap</span>
+            </button>
+
+            <p class="form-note">This version runs fully in the browser, so you can open the website directly without installing anything.</p>
+            <div class="error-box" id="errorBox" role="alert" aria-live="polite"></div>
+          </form>
+
+          <aside class="tips-card">
+            <p class="panel-label">What the result includes</p>
+            <ul>
+              <li>Career options based on interests and strengths</li>
+              <li>Why each career matches the student profile</li>
+              <li>Important skills and tools to learn</li>
+              <li>A simple roadmap from beginner to career-ready</li>
+            </ul>
+
+            <div class="sample-profile">
+              <p class="sample-label">Sample input</p>
+              <p>
+                "A student loves coding, maths, problem-solving, and creating projects. They enjoy working with logic and want a career with strong future growth."
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="results-section">
+        <div class="section-heading">
+          <p class="eyebrow">Career matches</p>
+          <h2>Recommended opportunities</h2>
+          <p>The assistant will display personalized career paths here.</p>
+        </div>
+
+        <div class="report-shell" id="reportShell">
+          <div class="report-header">
+            <div>
+              <p class="report-label">Student career report</p>
+              <h3 id="reportTitle">Personalized direction finder</h3>
+              <p class="report-text" id="reportText">Complete the form to generate a polished summary and comparison.</p>
+            </div>
+            <div class="report-actions">
+              <button class="secondary-btn report-btn" id="downloadReportBtn" type="button">Download report</button>
+              <button class="secondary-btn report-btn" id="printReportBtn" type="button">Print report</button>
+            </div>
+          </div>
+          <div class="report-metrics" id="reportMetrics">
+            <div class="report-metric">
+              <span>Top fit</span>
+              <strong>Waiting for profile</strong>
+            </div>
+            <div class="report-metric">
+              <span>Confidence</span>
+              <strong>Not generated</strong>
+            </div>
+            <div class="report-metric">
+              <span>Best advantage</span>
+              <strong>Add student strengths</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-grid" id="results"></div>
+        <div class="comparison-board" id="comparisonBoard"></div>
+      </section>
+    </main>
+  </div>
+
+  <template id="resultCardTemplate">
+    <article class="result-card">
+      <div class="result-top">
+        <div>
+          <p class="result-label">Career path</p>
+          <h3 class="career-title"></h3>
+        </div>
+        <div class="match-pill"></div>
+      </div>
+      <p class="career-summary"></p>
+      <div class="insight-strip">
+        <div class="insight-box">
+          <span>Why this fits</span>
+          <strong class="fit-reason"></strong>
+        </div>
+        <div class="insight-box">
+          <span>Ideal stream</span>
+          <strong class="fit-stream"></strong>
+        </div>
+      </div>
+      <div class="tag-group skills-group"></div>
+      <div class="roadmap-block">
+        <p class="roadmap-title">Roadmap</p>
+        <ol class="roadmap-list"></ol>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
