@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import OpenAI from "openai";
 import path from "path";
 import { fileURLToPath } from "url";
+import { careerCatalog } from "./src/data/careers.js";
+import { getRankedRecommendations } from "./src/engine/scoring.js";
+import { analyzeSkillGaps } from "./src/engine/gapAnalysis.js";
 
 dotenv.config();
 
@@ -11,257 +14,221 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Initialize OpenAI client safely
 const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   : null;
 
-app.use(express.json());
+// Middleware
+app.use(express.json({ limit: "500kb" }));
 app.use(express.static(__dirname));
 
-const careerCatalog = [
-  {
-    id: "software-engineer",
-    title: "Software Engineer",
-    keywords: ["coding", "programming", "apps", "software", "web", "logic", "computer"],
-    subjects: ["maths", "mathematics", "computer science", "informatics"],
-    workStyles: ["analytical", "practical"],
-    strengths: ["problem solving", "logical thinking", "creativity"],
-    explanation:
-      "This path fits students who enjoy coding, mathematics, and solving structured problems by building real products and systems.",
-    skills: ["Programming fundamentals", "Data structures", "Web development", "Git and GitHub", "Problem solving"],
-    roadmap: [
-      "Start with one language such as JavaScript, Python, or Java and build small projects every week.",
-      "Learn core computer science topics like data structures, algorithms, and databases.",
-      "Create portfolio projects such as websites, apps, or tools and publish them on GitHub.",
-      "Apply for internships, coding competitions, or freelance work to gain practical experience."
-    ]
-  },
-  {
-    id: "data-scientist",
-    title: "Data Scientist",
-    keywords: ["data", "statistics", "coding", "analysis", "research", "numbers"],
-    subjects: ["maths", "mathematics", "statistics", "computer science", "economics"],
-    workStyles: ["analytical"],
-    strengths: ["logical thinking", "curiosity", "problem solving"],
-    explanation:
-      "This is a strong option for students who like maths, coding, patterns, and learning from data to make decisions.",
-    skills: ["Python", "Statistics", "Data visualization", "Machine learning basics", "SQL"],
-    roadmap: [
-      "Build a strong base in mathematics, statistics, and Python programming.",
-      "Practice analyzing datasets and presenting insights with charts and dashboards.",
-      "Learn machine learning basics and complete beginner projects like prediction models.",
-      "Create a portfolio of data projects and look for internships in analytics or AI teams."
-    ]
-  },
-  {
-    id: "ai-engineer",
-    title: "AI Engineer",
-    keywords: ["ai", "machine learning", "coding", "automation", "intelligence", "models"],
-    subjects: ["maths", "mathematics", "computer science", "physics", "statistics"],
-    workStyles: ["analytical", "creative"],
-    strengths: ["problem solving", "logical thinking", "curiosity"],
-    explanation:
-      "AI engineering suits students who love coding and maths and want to create smart systems that can learn and automate tasks.",
-    skills: ["Python", "Linear algebra", "Machine learning", "Model deployment", "Prompt design"],
-    roadmap: [
-      "Learn Python deeply and strengthen maths topics such as probability, algebra, and calculus.",
-      "Study machine learning fundamentals and build projects like chatbots or recommendation systems.",
-      "Understand how to use AI APIs, train simple models, and deploy them in applications.",
-      "Showcase AI projects publicly and pursue internships in AI, ML, or software product teams."
-    ]
-  },
-  {
-    id: "ux-designer",
-    title: "UX/UI Designer",
-    keywords: ["design", "creativity", "interface", "user", "visual", "apps"],
-    subjects: ["art", "psychology", "computer science", "english"],
-    workStyles: ["creative"],
-    strengths: ["creativity", "communication", "empathy"],
-    explanation:
-      "Students who enjoy creativity, digital products, and understanding how people think can do very well in UX/UI design.",
-    skills: ["Wireframing", "Visual design", "User research", "Figma", "Design systems"],
-    roadmap: [
-      "Learn design principles, typography, color, and layout through small interface redesigns.",
-      "Practice using design tools like Figma to create app and website screens.",
-      "Study user research and usability so designs solve real student or customer problems.",
-      "Build a portfolio of case studies and apply for internships in product design or UI design."
-    ]
-  },
-  {
-    id: "cybersecurity-analyst",
-    title: "Cybersecurity Analyst",
-    keywords: ["security", "networks", "systems", "hacking", "coding", "protection"],
-    subjects: ["computer science", "maths", "mathematics", "technology"],
-    workStyles: ["analytical", "practical"],
-    strengths: ["attention to detail", "logical thinking", "problem solving"],
-    explanation:
-      "This path is ideal for students who are curious about systems, digital safety, and solving technical threats.",
-    skills: ["Networking", "Linux basics", "Security fundamentals", "Scripting", "Threat analysis"],
-    roadmap: [
-      "Understand how computers, operating systems, and networks work.",
-      "Practice basic scripting and learn security concepts such as vulnerabilities and authentication.",
-      "Use beginner labs and ethical hacking platforms to develop hands-on skills safely.",
-      "Work toward certifications, projects, or internships in security operations and system protection."
-    ]
-  },
-  {
-    id: "product-manager",
-    title: "Product Manager",
-    keywords: ["business", "apps", "planning", "strategy", "leadership", "technology"],
-    subjects: ["economics", "maths", "english", "computer science"],
-    workStyles: ["leadership", "creative"],
-    strengths: ["communication", "leadership", "problem solving"],
-    explanation:
-      "Students who like technology, decision-making, and coordinating people can grow into product management.",
-    skills: ["Communication", "Market research", "Roadmapping", "Product thinking", "Team collaboration"],
-    roadmap: [
-      "Learn how digital products are built and how user problems are identified.",
-      "Practice writing feature ideas, simple product plans, and user stories.",
-      "Collaborate on projects with designers and developers to understand cross-functional work.",
-      "Build a portfolio of product case studies and seek internships in product or operations roles."
-    ]
-  }
-];
+// Security & CORS response headers
+app.use((req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "SAMEORIGIN");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-function tokenizeProfile(payload) {
-  return [
-    payload.studentName,
-    payload.studentStage,
-    payload.interests,
-    payload.subjects,
-    payload.strengths,
-    payload.workStyle,
-    payload.goals,
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
+// Memory rate limiter for API routes
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const MAX_REQUESTS_PER_WINDOW = 40;
+
+function rateLimiter(req, res, next) {
+  const ip = req.ip || req.connection.remoteAddress || "global";
+  const now = Date.now();
+  const clientData = rateLimitMap.get(ip) || { count: 0, startTime: now };
+
+  if (now - clientData.startTime > RATE_LIMIT_WINDOW_MS) {
+    clientData.count = 1;
+    clientData.startTime = now;
+  } else {
+    clientData.count++;
+  }
+
+  rateLimitMap.set(ip, clientData);
+
+  if (clientData.count > MAX_REQUESTS_PER_WINDOW) {
+    return res.status(429).json({
+      error: "Too many requests. Please wait a minute before trying again.",
+    });
+  }
+
+  next();
 }
 
-function scoreCareer(career, profileText, payload) {
-  let score = 45;
-
-  career.keywords.forEach((keyword) => {
-    if (profileText.includes(keyword)) {
-      score += 8;
-    }
+/**
+ * Health check endpoint
+ */
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+    aiAdvisorEnabled: Boolean(openai),
+    careersCatalogCount: careerCatalog.length,
+    engineMode: openai ? "Hybrid Deterministic + LLM" : "Offline Algorithmic Engine",
   });
+});
 
-  career.subjects.forEach((subject) => {
-    if (profileText.includes(subject)) {
-      score += 6;
-    }
-  });
+/**
+ * AI Career Analysis Endpoint (Structured JSON Output with Strict Guardrails)
+ */
+app.post("/api/career-guidance", rateLimiter, async (req, res) => {
+  const profile = req.body || {};
 
-  career.strengths.forEach((strength) => {
-    if (profileText.includes(strength)) {
-      score += 5;
-    }
-  });
-
-  if (payload.workStyle && career.workStyles.includes(payload.workStyle)) {
-    score += 10;
-  }
-
-  if (profileText.includes("coding") && profileText.includes("math")) {
-    if (career.id === "software-engineer" || career.id === "data-scientist" || career.id === "ai-engineer") {
-      score += 14;
-    }
-  }
-
-  return Math.min(score, 98);
-}
-
-function buildLocalRecommendations(payload) {
-  const profileText = tokenizeProfile(payload);
-
-  const topCareers = careerCatalog
-    .map((career) => ({
-      career_title: career.title,
-      match_score: scoreCareer(career, profileText, payload),
-      explanation: career.explanation,
-      required_skills: career.skills,
-      roadmap: career.roadmap,
-    }))
-    .sort((a, b) => b.match_score - a.match_score)
-    .slice(0, 3);
-
-  return { career_recommendations: topCareers };
-}
-
-async function buildAiRecommendations(payload) {
-  if (!openai) {
-    return buildLocalRecommendations(payload);
-  }
-
-  const prompt = `
-You are a helpful AI career assistant for students.
-
-Analyze this student profile and recommend exactly 3 careers.
-Return only valid JSON with this shape:
-{
-  "career_recommendations": [
-    {
-      "career_title": "string",
-      "match_score": 0,
-      "explanation": "string",
-      "required_skills": ["string"],
-      "roadmap": ["string", "string", "string", "string"]
-    }
-  ]
-}
-
-Student profile:
-${JSON.stringify(payload, null, 2)}
-`;
-
-  const response = await openai.responses.create({
-    model: "gpt-4.1-mini",
-    input: prompt,
-  });
-
-  const rawText = response.output_text?.trim();
-
-  if (!rawText) {
-    throw new Error("AI returned an empty response.");
-  }
-
-  return JSON.parse(rawText);
-}
-
-app.post("/api/career-guidance", async (req, res) => {
-  const payload = req.body || {};
-
-  if (!payload.interests || !payload.subjects || !payload.goals) {
+  // Basic input validation
+  if (!profile.interestsText && !profile.skills?.length && !profile.careerGoals) {
     return res.status(400).json({
-      error: "Interests, favorite subjects, and goals/confusion are required.",
+      error: "Please provide at least skills, domain interests, or career goals for analysis.",
+    });
+  }
+
+  // 1. Calculate deterministic fact-based baseline
+  const localRankings = getRankedRecommendations(profile);
+  const topMatches = localRankings.slice(0, 3);
+  const topCareer = topMatches[0]?.careerDetails || careerCatalog[0];
+  const gaps = analyzeSkillGaps(topCareer, profile.skills);
+
+  // If no OpenAI key configured, return algorithmic output immediately
+  if (!openai) {
+    return res.json({
+      result: {
+        source: "deterministic_algorithmic_engine",
+        disclaimer: "Estimated profile compatibility score calculated via deterministic multi-factor match algorithms. Not a scientific or employment guarantee.",
+        career_recommendations: topMatches,
+        topGaps: gaps.topPriorityGaps,
+      },
     });
   }
 
   try {
-    const result = await buildAiRecommendations(payload);
-    res.json({ result });
-  } catch (error) {
-    console.error("Career guidance error:", error);
+    const prompt = `You are a Principal Career Intelligence Advisor.
+Analyze this candidate profile against structured deterministic match facts.
 
-    try {
-      const fallback = buildLocalRecommendations(payload);
-      res.json({
-        result: fallback,
-        fallback: true,
-      });
-    } catch {
-      res.status(500).json({
-        error: "Unable to generate career guidance right now.",
-      });
-    }
+CRITICAL GUARDRAILS:
+- Do NOT invent user skills, degrees, certifications, or employment history.
+- Ground all advice strictly in candidate inputs and target role competencies.
+
+Structured Facts:
+- Top Career Fit: ${topCareer.title} (${topMatches[0]?.matchScore}% estimated fit)
+- Verified Candidate Skills: ${(profile.skills || []).join(", ") || "None specified"}
+- Verified Skill Gaps: ${gaps.missingCoreSkills.map((m) => m.name).join(", ") || "None"}
+- Candidate Goals: ${profile.careerGoals || "Career advancement"}
+
+Return a strict JSON object adhering exactly to this schema:
+{
+  "career": "${topCareer.title}",
+  "matchExplanation": "2-3 sentences explaining specific alignment between verified skills and role requirements",
+  "strengths": ["string array of 2-3 verified strengths"],
+  "skillGaps": ["string array of top 2-3 verified missing skills"],
+  "recommendedActions": ["string array of 3 prioritized concrete actions for Weeks 1-4"],
+  "roadmapAdjustments": ["string array of 2 tailored recommendations to adjust standard learning roadmap"],
+  "confidenceNotes": "Estimated match note based on candidate's provided skills"
+}`;
+
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: "You are a professional technical career advisor. Output valid JSON only." },
+        { role: "user", content: prompt },
+      ],
+      response_format: { type: "json_object" },
+      temperature: 0.5,
+      max_tokens: 800,
+    });
+
+    const parsedAiResult = JSON.parse(completion.choices[0].message.content || "{}");
+
+    res.json({
+      result: {
+        source: "hybrid_ai_engine",
+        disclaimer: "Estimated match based on candidate profile inputs and industry competency benchmarks. Not an employment guarantee.",
+        aiStructuredAnalysis: parsedAiResult,
+        career_recommendations: topMatches,
+        topGaps: gaps.topPriorityGaps,
+      },
+    });
+  } catch (error) {
+    console.error("OpenAI API call failed, falling back to algorithmic engine:", error.message);
+    res.json({
+      result: {
+        source: "deterministic_algorithmic_engine_fallback",
+        disclaimer: "Estimated profile compatibility score calculated via deterministic multi-factor match algorithms.",
+        career_recommendations: topMatches,
+        topGaps: gaps.topPriorityGaps,
+      },
+    });
   }
 });
 
+/**
+ * Context-Aware AI Career Advisor Chat Endpoint
+ */
+app.post("/api/advisor-chat", rateLimiter, async (req, res) => {
+  const { query, profile, targetCareer } = req.body || {};
+
+  if (!query || typeof query !== "string") {
+    return res.status(400).json({ error: "Valid query string is required." });
+  }
+
+  // Restrict query length for security
+  const sanitizedQuery = String(query).substring(0, 500);
+
+  if (!openai) {
+    return res.json({
+      reply: `**Offline Career Guidance Engine**: For **${targetCareer?.title || "your target role"}**, focus on mastering your top missing skills (${(targetCareer?.requiredSkills || []).slice(0, 2).map((s) => s.name).join(", ")}), deploying a GitHub portfolio project, and following your phased roadmap.`,
+    });
+  }
+
+  try {
+    const systemPrompt = `You are the Context-Aware AI Career Advisor for the Career Intelligence Platform.
+You are mentoring a candidate targeting the role of: ${targetCareer?.title || "Software Engineering"}.
+
+CANDIDATE CONTEXT:
+- Academic Level: ${profile?.educationLevel || "Not specified"} (${profile?.degreeOrStream || "Tech"})
+- Verified Skills: ${(profile?.skills || []).join(", ") || "None"}
+- Target Ambition: ${profile?.careerGoals || "Career advancement"}
+
+GUARDRAILS:
+- Never fabricate candidate experience, certifications, or past achievements.
+- Provide structured, practical, encouraging advice.
+- Use markdown bolding and bullet lists for readability. Keep answers within 3-4 concise paragraphs.`;
+
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: sanitizedQuery },
+      ],
+      temperature: 0.6,
+      max_tokens: 600,
+    });
+
+    const reply = completion.choices[0].message.content || "I am analyzing your path. Keep building!";
+    res.json({ reply });
+  } catch (error) {
+    console.error("Advisor chat error:", error.message);
+    res.json({
+      reply: `For **${targetCareer?.title || "your target role"}**, prioritize building projects that solve real problems, writing clean documentation, and practicing core problem-solving.`,
+    });
+  }
+});
+
+// Serve frontend for all SPA routes
 app.get(/.*/, (_req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(port, () => {
-  console.log(`Career Assistant running at http://localhost:${port}`);
+  console.log(`Career Intelligence Platform active at http://localhost:${port}`);
 });

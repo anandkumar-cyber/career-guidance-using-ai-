@@ -3,425 +3,771 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Career Assistant | Discover the Right Path</title>
+  <title>Career Intelligence Platform | Know What Fits, What's Missing, and What to Do Next</title>
   <meta
     name="description"
-    content="Career Assistant helps students discover career options, matching skills, and step-by-step roadmaps based on their interests."
+    content="A personal career intelligence platform that assesses your technical competencies, pinpoints critical skill gaps, synthesizes a 6-month milestone roadmap, and provides grounded AI career guidance."
   >
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page-shell">
-    <header class="hero">
-      <nav class="topbar">
-        <div class="brand">
-          <span class="brand-mark">CA</span>
-          <div>
-            <p class="brand-name">Career Assistant</p>
-            <p class="brand-subtitle">AI-guided student career discovery</p>
+
+  <!-- Top Navigation -->
+  <header class="header">
+    <div class="container nav-wrapper">
+      <a href="#" class="brand">
+        <div class="brand-icon">CP</div>
+        <div>
+          <span class="brand-title">Career Intelligence</span>
+          <span class="brand-tag">Platform</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#how-it-works" class="nav-link">Product</a></li>
+        <li><a href="#capabilities-preview" class="nav-link">How It Works</a></li>
+        <li><a href="#app" class="nav-link" data-tab="explorer">Career Explorer</a></li>
+        <li><a href="#methodology" class="nav-link">Methodology</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#app" class="btn btn-secondary btn-sm" id="navOpenWorkspaceBtn">Open Workspace</a>
+        <button class="btn btn-primary btn-sm" id="startAssessmentTopBtn">Start Assessment</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Landing Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="pulse"></span>
+          <span>Personal Career Intelligence</span>
+        </div>
+
+        <h1 class="hero-title">
+          Know what fits. Know what's missing. Know what to do next.
+        </h1>
+
+        <p class="hero-description">
+          A grounded engineering platform that analyzes your verified technical competencies, reveals high-priority skill gaps, synthesizes a structured 6-month learning roadmap, and guides your portfolio execution.
+        </p>
+
+        <div class="hero-cta-group">
+          <button class="btn btn-primary btn-lg" id="heroStartBtn">
+            Start Assessment &rarr;
+          </button>
+          <a href="#app" class="btn btn-secondary btn-lg" id="heroViewAppBtn">
+            Open Workspace
+          </a>
+        </div>
+
+        <div class="hero-metrics-strip">
+          <div class="metric-item">
+            <strong>16</strong>
+            <span>Curated Career Tracks</span>
+          </div>
+          <div class="metric-item">
+            <strong>6-Month</strong>
+            <span>Phased Learning Action Plans</span>
+          </div>
+          <div class="metric-item">
+            <strong>Deterministic</strong>
+            <span>Fact-Based Core Matching</span>
           </div>
         </div>
-        <a class="topbar-link" href="#planner">Start exploring</a>
+      </div>
+
+      <div class="hero-right">
+        <div class="showcase-card">
+          <div class="showcase-header">
+            <div>
+              <p style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Match Spotlight</p>
+              <h3 id="heroShowcaseRole" style="font-size:1.25rem; font-weight:800;">Full-Stack Software Engineer</h3>
+            </div>
+            <span class="showcase-status" id="heroShowcaseCategory">Software Eng</span>
+          </div>
+
+          <div class="preview-match-box">
+            <div class="preview-match-score">
+              <span style="font-size:0.85rem; font-weight:600; color:var(--text-muted);">Estimated Profile Compatibility</span>
+              <span class="score-number" id="heroShowcaseScore">94%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="heroProgressBar" style="width: 94%;"></div>
+            </div>
+            
+            <div style="font-size:0.82rem; line-height:1.5; color:var(--text-main); margin-top:8px;">
+              <strong style="display:block; font-size:0.75rem; text-transform:uppercase; color:var(--primary); margin-bottom:4px;">Why this role?</strong>
+              <div style="display:flex; flex-direction:column; gap:4px; color:var(--text-muted);">
+                <span>• <strong>Skill Overlap:</strong> Active match across JavaScript, React, and SQL</span>
+                <span>• <strong>Domain Alignment:</strong> High interest in web applications & distributed tools</span>
+                <span>• <strong>Background Synergy:</strong> Foundation in computer science & mathematics</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <p style="font-size:0.75rem; font-weight:700; color:var(--text-muted); margin-bottom:8px; text-transform:uppercase;">Top Competencies</p>
+            <div class="mini-tag-list" id="heroShowcaseTags">
+              <span class="pill-tag">JavaScript / TS</span>
+              <span class="pill-tag">React Ecosystem</span>
+              <span class="pill-tag">Node APIs</span>
+              <span class="pill-tag">SQL Modeling</span>
+            </div>
+          </div>
+
+          <button class="btn btn-subtle" style="width:100%; justify-content:center;" id="heroShowcaseInspectBtn">
+            Inspect Full Trajectory &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Capabilities Preview -->
+  <section class="capabilities-section" id="capabilities-preview">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Product Architecture</p>
+        <h2 class="section-heading">Structured facts first. AI personalization second.</h2>
+        <p class="section-subtitle">
+          See how the platform turns subjective candidate goals into structured, executable career milestones.
+        </p>
+      </div>
+
+      <!-- 3 Visual Product Previews -->
+      <div class="visual-previews-grid">
+        <!-- Preview 1: Multi-Factor Match Engine -->
+        <article class="preview-feature-card">
+          <div class="preview-feature-header">
+            <h3 class="preview-feature-title">Multi-Factor Match Engine</h3>
+            <p class="preview-feature-desc">Evaluates skill overlap (40%), domain interest (25%), educational background (15%), and problem-solving style (20%).</p>
+          </div>
+          <div class="mini-interface-box">
+            <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:6px;">
+              <span>Technical Skills (40 pts max)</span>
+              <span>32 / 40</span>
+            </div>
+            <div class="progress-bar-bg" style="height:5px; margin-bottom:10px;"><div class="progress-bar-fill" style="width:80%;"></div></div>
+
+            <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:6px;">
+              <span>Domain Synergy (25 pts max)</span>
+              <span>25 / 25</span>
+            </div>
+            <div class="progress-bar-bg" style="height:5px; margin-bottom:10px;"><div class="progress-bar-fill" style="width:100%; background:var(--accent-cyan);"></div></div>
+
+            <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:6px;">
+              <span>Background & Style (35 pts max)</span>
+              <span>28 / 35</span>
+            </div>
+            <div class="progress-bar-bg" style="height:5px; margin-bottom:0;"><div class="progress-bar-fill" style="width:80%; background:var(--success);"></div></div>
+          </div>
+        </article>
+
+        <!-- Preview 2: Granular Skill Gap Matrix -->
+        <article class="preview-feature-card">
+          <div class="preview-feature-header">
+            <h3 class="preview-feature-title">Personalized Skill Gap Matrix</h3>
+            <p class="preview-feature-desc">Categorizes required role competencies into Active, Developing, and Priority Gaps with explicit ramp-up plans.</p>
+          </div>
+          <div class="mini-interface-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <strong>SQL & Schema Design</strong>
+              <span class="gap-badge badge-missing">⚠️ Priority Gap</span>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.78rem; margin-bottom:6px;">Target: Job-ready • Est. 3–4 weeks</p>
+            <div class="progress-bar-bg" style="height:5px; margin-bottom:10px;"><div class="progress-bar-fill" style="width:25%; background:var(--danger);"></div></div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <strong>React & Next.js</strong>
+              <span class="gap-badge badge-developing">⚡ Developing</span>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.78rem; margin-bottom:6px;">Target: Production-ready • Est. 2 weeks</p>
+            <div class="progress-bar-bg" style="height:5px; margin-bottom:0;"><div class="progress-bar-fill" style="width:65%; background:var(--warning);"></div></div>
+          </div>
+        </article>
+
+        <!-- Preview 3: Phased 6-Month Roadmap -->
+        <article class="preview-feature-card">
+          <div class="preview-feature-header">
+            <h3 class="preview-feature-title">Dynamic 6-Month Roadmap</h3>
+            <p class="preview-feature-desc">Month-by-month trajectory adapted to your verified baseline, tracking milestone tasks and deliverable proofs.</p>
+          </div>
+          <div class="mini-interface-box">
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span style="font-weight:700; color:var(--primary);">Month 1 • Core Foundations</span>
+              <span style="color:var(--text-muted);">10 hrs/wk</span>
+            </div>
+            <div style="font-size:0.78rem; color:var(--text-muted); display:flex; flex-direction:column; gap:4px; margin-bottom:8px;">
+              <span>☑ Configure IDE & ESLint standards</span>
+              <span>☑ Build 3 modular algorithmic exercises</span>
+              <span>☐ Setup automated Git CI linting</span>
+            </div>
+            <div style="background:white; border:1px solid var(--border); padding:6px; border-radius:4px; font-size:0.74rem;">
+              🎯 <strong>Milestone:</strong> Deployed GitHub repo with automated checks
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Secondary Features Grid -->
+      <div class="cards-grid" id="how-it-works">
+        <article class="cap-card">
+          <div class="cap-icon">01</div>
+          <h3 class="cap-title">Transparent Matching</h3>
+          <p class="cap-text">
+            Deterministic scoring across 16 tech tracks. Every score is explainable with transparent factor breakdowns.
+          </p>
+        </article>
+
+        <article class="cap-card">
+          <div class="cap-icon">02</div>
+          <h3 class="cap-title">Actionable Next Steps</h3>
+          <p class="cap-text">
+            Calculates your highest-leverage next action so you always know what skill or project to tackle this week.
+          </p>
+        </article>
+
+        <article class="cap-card">
+          <div class="cap-icon">03</div>
+          <h3 class="cap-title">Portfolio Project Specs</h3>
+          <p class="cap-text">
+            Tiered beginner to production-grade blueprints with exact stacks, GitHub specs, and ATS resume bullets.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Platform Workspace -->
+  <main class="app-container" id="app">
+    <div class="container">
+
+      <!-- Workspace Section Header -->
+      <div class="app-workspace-banner">
+        <div>
+          <h2 style="font-size:1.6rem; font-weight:800; color:var(--text-main);">Career Intelligence Workspace</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem;">Your personalized dashboard, gap analysis matrix, phased roadmap, and AI advisor.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-secondary btn-sm" id="exportReportBtn">
+            📄 Export Career Blueprint
+          </button>
+          <button class="btn btn-primary btn-sm" id="startAssessmentBtn">
+            🚀 Retake Assessment
+          </button>
+        </div>
+      </div>
+
+      <!-- App User Metadata Strip -->
+      <div class="app-header-strip">
+        <div class="app-user-badge">
+          <div class="user-avatar" id="userAvatar">CP</div>
+          <div class="user-meta">
+            <h3 id="userNameDisplay">Your Career Workspace</h3>
+            <p id="userStatusDisplay">Targeting Full-Stack Software Engineering • 6-Month Trajectory</p>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary btn-sm" id="editProfileBtn">
+          ✏️ Edit Profile Data
+        </button>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="app-nav-tabs" role="tablist">
+        <button class="tab-btn active" data-tab="overview" role="tab" aria-selected="true">
+          Overview
+        </button>
+        <button class="tab-btn" data-tab="matches" role="tab" aria-selected="false">
+          Career Matches
+        </button>
+        <button class="tab-btn" data-tab="gaps" role="tab" aria-selected="false">
+          Skill Gaps
+        </button>
+        <button class="tab-btn" data-tab="roadmap" role="tab" aria-selected="false">
+          Roadmap
+        </button>
+        <button class="tab-btn" data-tab="projects" role="tab" aria-selected="false">
+          Projects
+        </button>
+        <button class="tab-btn" data-tab="advisor" role="tab" aria-selected="false">
+          AI Advisor
+        </button>
+        <button class="tab-btn" data-tab="explorer" role="tab" aria-selected="false">
+          Career Explorer
+        </button>
       </nav>
 
-      <div class="hero-grid">
-        <section class="hero-copy">
-          <p class="eyebrow">Designed for uncertain students</p>
-          <h1>
-            Find a career path that matches
-            <span>what you enjoy</span>
-            and what you are good at.
-          </h1>
-          <p class="hero-text">
-            Career Assistant helps students who are confused about what to pursue. Share your interests,
-            favorite subjects, and working style, and get personalized career opportunities with a roadmap
-            for each option.
-          </p>
-
-          <div class="hero-actions">
-            <a class="primary-btn" href="#planner">Discover career paths</a>
-            <a class="secondary-btn" href="#how-it-works">See how it works</a>
+      <!-- ================= TAB 1: OVERVIEW & DASHBOARD ================= -->
+      <section class="tab-panel active" id="tab-overview">
+        <!-- Target Role Hero Card -->
+        <div class="target-role-hero">
+          <div class="role-badge-strip">
+            <span class="role-badge match-high" id="dashMatchBadge">94% Career Fit</span>
+            <span class="role-badge" id="dashCategoryBadge">Software Engineering</span>
+            <span class="role-badge">Active Target Path</span>
           </div>
 
-          <div class="hero-stats">
-            <article>
-              <strong>3</strong>
-              <span>recommended career paths</span>
-            </article>
-            <article>
-              <strong>4-step</strong>
-              <span>roadmap for each path</span>
-            </article>
-            <article>
-              <strong>Student-first</strong>
-              <span>clear language and guidance</span>
-            </article>
-          </div>
-        </section>
-
-        <aside class="hero-panel">
-          <p class="panel-label">Example student profile</p>
-          <h2>Coding + Maths</h2>
-          <p class="panel-text">
-            A student who enjoys coding, loves mathematics, and likes solving logical problems can explore
-            careers such as software engineering, data science, AI engineering, and quantitative analysis.
+          <h2 class="role-main-title" id="dashTargetTitle">Full-Stack Software Engineer</h2>
+          <p class="role-desc" id="dashTargetDesc">
+            Designs, builds, and maintains robust scalable web applications from user interfaces to databases and APIs.
           </p>
 
-          <div class="mini-roadmap">
-            <div>
-              <span>01</span>
-              <p>Strengths identified</p>
+          <div class="role-meta-columns">
+            <div class="role-meta-col">
+              <strong>Estimated Compensation</strong>
+              <span id="dashSalary">$85k – $155k / yr (US Entry–Mid)</span>
             </div>
-            <div>
-              <span>02</span>
-              <p>Best-fit careers matched</p>
+            <div class="role-meta-col">
+              <strong>Role Readiness</strong>
+              <span id="dashReadiness">48% Ready</span>
             </div>
-            <div>
-              <span>03</span>
-              <p>Skills and tools suggested</p>
-            </div>
-            <div>
-              <span>04</span>
-              <p>Roadmap built step by step</p>
+            <div class="role-meta-col">
+              <strong>Roadmap Progress</strong>
+              <span id="dashRoadmapProgress">0 of 18 Tasks Done</span>
             </div>
           </div>
-        </aside>
-      </div>
-    </header>
-
-    <main>
-      <section class="feature-strip" id="how-it-works">
-        <article class="feature-card">
-          <p class="feature-index">01</p>
-          <h3>Understand the student</h3>
-          <p>Capture interests, strongest subjects, personality traits, and the kind of work the student enjoys.</p>
-        </article>
-        <article class="feature-card">
-          <p class="feature-index">02</p>
-          <h3>Match career opportunities</h3>
-          <p>Turn those interests into practical career options instead of vague motivational advice.</p>
-        </article>
-        <article class="feature-card">
-          <p class="feature-index">03</p>
-          <h3>Show a roadmap</h3>
-          <p>Give each career path a next-step plan so the student knows what to learn and what to do next.</p>
-        </article>
-      </section>
-
-      <section class="premium-strip">
-        <article class="premium-panel premium-panel-wide">
-          <p class="eyebrow">Premium experience</p>
-          <h2>More than a suggestion list</h2>
-          <p>
-            The upgraded experience turns student interests into a polished career report with fit analysis,
-            strengths alignment, and an action-focused roadmap.
-          </p>
-        </article>
-        <article class="premium-panel">
-          <p class="premium-kicker">Best for</p>
-          <h3>School students</h3>
-          <p>Especially useful for students who know what they like but do not know which career direction to trust.</p>
-        </article>
-        <article class="premium-panel">
-          <p class="premium-kicker">Outcome</p>
-          <h3>Clear next steps</h3>
-          <p>Every recommendation includes skills, focus areas, and a roadmap that feels practical.</p>
-        </article>
-      </section>
-
-      <section class="trust-strip">
-        <article class="trust-card">
-          <p class="trust-label">Assessment style</p>
-          <h3>Student-first guidance</h3>
-          <p>Built to reduce confusion and turn vague interests into clear, realistic next moves.</p>
-        </article>
-        <article class="trust-card">
-          <p class="trust-label">Report format</p>
-          <h3>Presentation-ready output</h3>
-          <p>Each result is organized like a compact advisory report that can also be printed cleanly.</p>
-        </article>
-        <article class="trust-card">
-          <p class="trust-label">Focus</p>
-          <h3>Career clarity</h3>
-          <p>Designed to help students compare strong options instead of getting lost in too many choices.</p>
-        </article>
-      </section>
-
-      <section class="planner-section" id="planner">
-        <div class="section-heading">
-          <p class="eyebrow">Career planner</p>
-          <h2>Tell the assistant about the student</h2>
-          <p>
-            Fill in the details below. The assistant will suggest career paths, core skills, and a roadmap for each one.
-          </p>
         </div>
 
-        <div class="planner-layout">
-          <form class="planner-card" id="career-form">
-            <div class="input-mode-card">
-              <p class="panel-label">Choose how to describe the student</p>
-              <div class="choice-grid">
-                <label class="choice-option">
-                  <input type="radio" name="inputMode" value="guided" checked>
-                  <span>
-                    <strong>Guided form</strong>
-                    <small>Use structured fields like interests, strengths, and stream.</small>
-                  </span>
-                </label>
-                <label class="choice-option">
-                  <input type="radio" name="inputMode" value="description">
-                  <span>
-                    <strong>Full description</strong>
-                    <small>Write the student's complete profile in your own words.</small>
-                  </span>
-                </label>
-                <label class="choice-option">
-                  <input type="radio" name="inputMode" value="both">
-                  <span>
-                    <strong>Use both</strong>
-                    <small>Combine structured answers with a detailed written summary.</small>
-                  </span>
-                </label>
-              </div>
-            </div>
+        <!-- Metric Explanation: Fit vs Readiness -->
+        <div style="background:var(--bg-subtle); padding:12px 16px; border-radius:var(--radius-md); border:1px solid var(--border); margin-bottom:20px; font-size:0.82rem; color:var(--text-muted); line-height:1.5;">
+          ℹ️ <strong>Understanding your scores:</strong> 
+          <strong>Career Fit</strong> reflects how well this domain matches your interests, strengths, and background. 
+          <strong>Role Readiness</strong> reflects how much of the required technical stack is currently mastered versus needing dedicated practice. Having high Fit with lower Readiness is normal and indicates strong growth upside.
+        </div>
 
-            <div class="field-grid">
-              <label class="field">
-                <span>Student name</span>
-                <input id="studentName" name="studentName" type="text" placeholder="Aarav">
-              </label>
-
-              <label class="field">
-                <span>Class or grade</span>
-                <select id="studentGrade" name="studentGrade">
-                  <option value="">Choose one</option>
-                  <option value="Class 8">Class 8</option>
-                  <option value="Class 9">Class 9</option>
-                  <option value="Class 10">Class 10</option>
-                  <option value="Class 11">Class 11</option>
-                  <option value="Class 12">Class 12</option>
-                  <option value="1st Year College">1st Year College</option>
-                  <option value="2nd Year College">2nd Year College</option>
-                  <option value="3rd Year College">3rd Year College</option>
-                  <option value="Beginner learner">Beginner learner</option>
-                  <option value="other">Other / Write manually</option>
-                </select>
-              </label>
-            </div>
-
-            <label class="field">
-              <span>Custom class or stage</span>
-              <input id="studentStageCustom" name="studentStageCustom" type="text" placeholder="Example: Gap year student or diploma learner">
-            </label>
-
-            <div class="field">
-              <span>Interests</span>
-              <div class="interest-grid">
-                <label class="choice-option compact-option">
-                  <input type="checkbox" name="interestTags" value="Coding">
-                  <span><strong>Coding</strong></span>
-                </label>
-                <label class="choice-option compact-option">
-                  <input type="checkbox" name="interestTags" value="Mathematics">
-                  <span><strong>Mathematics</strong></span>
-                </label>
-                <label class="choice-option compact-option">
-                  <input type="checkbox" name="interestTags" value="Robotics">
-                  <span><strong>Robotics</strong></span>
-                </label>
-                <label class="choice-option compact-option">
-                  <input type="checkbox" name="interestTags" value="Design">
-                  <span><strong>Design</strong></span>
-                </label>
-                <label class="choice-option compact-option">
-                  <input type="checkbox" name="interestTags" value="Business">
-                  <span><strong>Business</strong></span>
-                </label>
-                <label class="choice-option compact-option">
-                  <input type="checkbox" name="interestTags" value="Writing">
-                  <span><strong>Writing</strong></span>
-                </label>
-                <label class="choice-option compact-option">
-                  <input type="checkbox" name="interestTags" value="Research">
-                  <span><strong>Research</strong></span>
-                </label>
-                <label class="choice-option compact-option">
-                  <input type="checkbox" name="interestTags" value="Problem solving">
-                  <span><strong>Problem solving</strong></span>
-                </label>
-              </div>
-            </div>
-
-            <label class="field">
-              <span>Write more interests</span>
-              <input id="interests" name="interests" type="text" placeholder="Example: Building apps, AI, gaming, finance, storytelling">
-            </label>
-
-            <label class="field">
-              <span>Favorite subjects</span>
-              <input id="subjects" name="subjects" type="text" placeholder="Mathematics, computer science, physics">
-            </label>
-
-            <label class="field">
-              <span>Strengths</span>
-              <input id="strengths" name="strengths" type="text" placeholder="Logical thinking, creativity, communication">
-            </label>
-
-            <label class="field">
-              <span>Academic stream</span>
-              <select id="stream" name="stream">
-                <option value="">Choose one</option>
-                <option value="science">Science</option>
-                <option value="commerce">Commerce</option>
-                <option value="arts">Arts / Humanities</option>
-                <option value="general">General / Not decided yet</option>
-              </select>
-            </label>
-
-            <label class="field">
-              <span>Work style</span>
-              <select id="workStyle" name="workStyle">
-                <option value="">Choose one</option>
-                <option value="creative">Creative and idea-driven</option>
-                <option value="analytical">Analytical and detail-focused</option>
-                <option value="practical">Practical and hands-on</option>
-                <option value="leadership">Leadership and people-oriented</option>
-              </select>
-            </label>
-
-            <label class="field">
-              <span>Goals or confusion</span>
-              <textarea
-                id="goals"
-                name="goals"
-                rows="5"
-                placeholder="Example: I enjoy coding and maths but I do not know whether I should become a software engineer, data scientist, or AI engineer."
-              ></textarea>
-            </label>
-
-            <label class="field">
-              <span>Dream outcome</span>
-              <textarea
-                id="dreamOutcome"
-                name="dreamOutcome"
-                rows="4"
-                placeholder="Example: I want a future-ready career where I can solve challenging problems, build useful things, and keep growing."
-              ></textarea>
-            </label>
-
-            <label class="field">
-              <span>Full student description</span>
-              <textarea
-                id="studentDescription"
-                name="studentDescription"
-                rows="5"
-                placeholder="Example: This student is in class 11, enjoys coding and mathematics, likes solving logical problems, and wants a future-ready career but is unsure whether software engineering, AI, or data science is the best path."
-              ></textarea>
-            </label>
-
-            <button class="primary-btn submit-btn" type="submit" id="submitBtn">
-              <span class="btn-spinner" id="btnSpinner" aria-hidden="true"></span>
-              <span id="btnLabel">Generate career roadmap</span>
+        <!-- Next Best Action Section -->
+        <div class="next-action-card" id="nextBestActionCard">
+          <div class="next-action-badge">⚡ Recommended Next Best Action</div>
+          <h3 class="next-action-title" id="nextActionTitle">Master SQL & Relational Database Design</h3>
+          <p class="next-action-desc" id="nextActionDesc">
+            Relational databases are currently your highest-priority missing core competency for Full-Stack Software Engineering.
+          </p>
+          <div class="next-action-meta">
+            <span style="font-size:0.82rem; color:var(--text-muted); font-weight:600;" id="nextActionTime">Estimated effort: 3–4 weeks</span>
+            <button class="btn btn-primary btn-sm" id="dashStartSkillPlanBtn">
+              Start Skill Plan &rarr;
             </button>
+          </div>
+        </div>
 
-            <p class="form-note">This version runs fully in the browser, so you can open the website directly without installing anything.</p>
-            <div class="error-box" id="errorBox" role="alert" aria-live="polite"></div>
-          </form>
-
-          <aside class="tips-card">
-            <p class="panel-label">What the result includes</p>
-            <ul>
-              <li>Career options based on interests and strengths</li>
-              <li>Why each career matches the student profile</li>
-              <li>Important skills and tools to learn</li>
-              <li>A simple roadmap from beginner to career-ready</li>
-            </ul>
-
-            <div class="sample-profile">
-              <p class="sample-label">Sample input</p>
-              <p>
-                "A student loves coding, maths, problem-solving, and creating projects. They enjoy working with logic and want a career with strong future growth."
+        <!-- Dashboard Layout Grid -->
+        <div class="dashboard-grid">
+          <div class="dashboard-left">
+            <!-- Strategic Alignment & Breakdown -->
+            <div class="widget-card">
+              <div class="widget-header">
+                <h3 class="widget-title">Profile Compatibility Breakdown</h3>
+                <span class="pill-tag" id="dashMatchTier">Estimated Match</span>
+              </div>
+              <p id="dashWhyItFits" style="font-size:0.9rem; color:var(--text-muted); line-height:1.6; margin-bottom:18px;">
+                High synergy across JavaScript, modern React component architecture, and relational database systems.
               </p>
+
+              <div class="score-breakdown-list" id="scoreBreakdownList">
+                <!-- Populated dynamically -->
+              </div>
             </div>
-          </aside>
+
+            <!-- Priority Skill Gaps Overview -->
+            <div class="widget-card">
+              <div class="widget-header">
+                <h3 class="widget-title">Top 3 Priority Skill Gaps</h3>
+              </div>
+              <div id="dashActionList" style="display:flex; flex-direction:column; gap:12px;">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-right">
+            <!-- Role Readiness Score Widget -->
+            <div class="widget-card" style="text-align:center;">
+              <h3 class="widget-title" style="justify-content:center; margin-bottom:10px;">Role Readiness</h3>
+              <div style="font-size:3rem; font-weight:800; font-family:var(--font-mono); color:var(--primary); line-height:1;" id="dashReadinessScore">
+                48%
+              </div>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; margin-bottom:16px;">
+                Technical competencies verified vs target role
+              </p>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="dashReadinessBar" style="width: 48%;"></div>
+              </div>
+              <button class="btn btn-subtle btn-sm" style="width:100%;" id="dashViewGapsBtn">
+                Review Skill Gap Matrix &rarr;
+              </button>
+            </div>
+
+            <!-- Quick AI Advisor Callout -->
+            <div class="widget-card">
+              <h3 class="widget-title" style="margin-bottom:8px;">Contextual AI Advisor</h3>
+              <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:14px;">
+                Ask questions about your roadmap, portfolio projects, or technical interview strategies.
+              </p>
+              <button class="btn btn-secondary btn-sm" style="width:100%;" id="dashAskAdvisorBtn">
+                Open Career Advisor &rarr;
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="results-section">
-        <div class="section-heading">
-          <p class="eyebrow">Career matches</p>
-          <h2>Recommended opportunities</h2>
-          <p>The assistant will display personalized career paths here.</p>
+      <!-- ================= TAB 2: CAREER MATCHES ================= -->
+      <section class="tab-panel" id="tab-matches">
+        <div style="margin-bottom:20px;">
+          <h2 style="font-size:1.5rem; font-weight:800;">Estimated Career Fit Pathways</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem;">
+            Ranked via deterministic multi-factor match algorithms across skills, interests, and background.
+          </p>
         </div>
 
-        <div class="report-shell" id="reportShell">
-          <div class="report-header">
+        <div id="matchesContainer" style="display:flex; flex-direction:column; gap:20px;">
+          <!-- Populated dynamically with rich career match cards -->
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: SKILL GAP ANALYSIS ================= -->
+      <section class="tab-panel" id="tab-gaps">
+        <div style="margin-bottom:20px;">
+          <h2 style="font-size:1.5rem; font-weight:800;">Personalized Skill Gap Matrix</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem;" id="gapSubtitle">
+            Comparing your verified profile against industry benchmarks for <strong id="gapTargetName">Full-Stack Software Engineer</strong>.
+          </p>
+        </div>
+
+        <div class="gap-matrix-grid">
+          <div class="gap-column">
+            <div class="gap-col-header">
+              <h3 style="font-size:0.95rem; font-weight:700;">🟢 Active Competencies</h3>
+              <span class="gap-badge badge-strong" id="gapStrongCount">4</span>
+            </div>
+            <ul class="gap-skills-list" id="gapStrongList"></ul>
+          </div>
+
+          <div class="gap-column">
+            <div class="gap-col-header">
+              <h3 style="font-size:0.95rem; font-weight:700;">🟡 Developing Skills</h3>
+              <span class="gap-badge badge-developing" id="gapDevelopingCount">2</span>
+            </div>
+            <ul class="gap-skills-list" id="gapDevelopingList"></ul>
+          </div>
+
+          <div class="gap-column">
+            <div class="gap-col-header">
+              <h3 style="font-size:0.95rem; font-weight:700;">🔴 Priority Skill Gaps</h3>
+              <span class="gap-badge badge-missing" id="gapMissingCount">2</span>
+            </div>
+            <ul class="gap-skills-list" id="gapMissingList"></ul>
+          </div>
+        </div>
+
+        <!-- Priority Action Plan -->
+        <div class="widget-card">
+          <h3 class="widget-title">Tailored Skill Improvement Plan</h3>
+          <div id="gapPlanList" style="display:flex; flex-direction:column; gap:12px; margin-top:14px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: LEARNING ROADMAP ================= -->
+      <section class="tab-panel" id="tab-roadmap">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h2 style="font-size:1.5rem; font-weight:800;" id="roadmapHeaderTitle">6-Month Phased Roadmap</h2>
+            <p style="color:var(--text-muted); font-size:0.9rem;">
+              Personalized trajectory adapted to your verified skills and gaps. State is persisted automatically.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:0.85rem; font-weight:600; color:var(--text-muted);">Overall Progress:</span>
+            <strong style="font-family:var(--font-mono); font-size:1.2rem; color:var(--primary);" id="roadmapProgressPercent">0%</strong>
+          </div>
+        </div>
+
+        <div class="roadmap-timeline" id="roadmapPhasesContainer">
+          <!-- Populated dynamically with phases -->
+        </div>
+      </section>
+
+      <!-- ================= TAB 5: PORTFOLIO PROJECTS ================= -->
+      <section class="tab-panel" id="tab-projects">
+        <div style="margin-bottom:20px;">
+          <h2 style="font-size:1.5rem; font-weight:800;">Targeted Portfolio Project Specifications</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem;">
+            Curated project builds explicitly designed to eliminate your skill gaps and prove competence to engineering hiring managers.
+          </p>
+        </div>
+
+        <div class="project-tier-grid" id="projectDeckContainer">
+          <!-- Populated dynamically with Beginner, Intermediate, and Advanced project cards -->
+        </div>
+      </section>
+
+      <!-- ================= TAB 6: AI CAREER ADVISOR ================= -->
+      <section class="tab-panel" id="tab-advisor">
+        <div class="chat-container">
+          <div class="chat-header">
             <div>
-              <p class="report-label">Student career report</p>
-              <h3 id="reportTitle">Personalized direction finder</h3>
-              <p class="report-text" id="reportText">Complete the form to generate a polished summary and comparison.</p>
+              <h3 style="font-size:1rem; font-weight:700;">Context-Aware Career Advisor</h3>
+              <p style="font-size:0.75rem; color:#94a3b8;" id="advisorSubheader">Grounded in your profile & roadmap</p>
             </div>
-            <div class="report-actions">
-              <button class="secondary-btn report-btn" id="downloadReportBtn" type="button">Download report</button>
-              <button class="secondary-btn report-btn" id="printReportBtn" type="button">Print report</button>
-            </div>
+            <button class="btn btn-secondary btn-sm" id="clearChatBtn" style="background:rgba(255,255,255,0.1); color:white; border-color:rgba(255,255,255,0.2);">
+              Clear Chat
+            </button>
           </div>
-          <div class="report-metrics" id="reportMetrics">
-            <div class="report-metric">
-              <span>Top fit</span>
-              <strong>Waiting for profile</strong>
-            </div>
-            <div class="report-metric">
-              <span>Confidence</span>
-              <strong>Not generated</strong>
-            </div>
-            <div class="report-metric">
-              <span>Best advantage</span>
-              <strong>Add student strengths</strong>
-            </div>
+
+          <div class="chat-messages" id="chatMessagesContainer">
+            <!-- Messages rendered dynamically -->
+          </div>
+
+          <div class="prompt-chips-bar">
+            <button class="prompt-chip" data-prompt="What core skill should I focus on learning this week?">
+              What should I learn this week?
+            </button>
+            <button class="prompt-chip" data-prompt="Recommend an impressive portfolio project for my target career.">
+              Recommend a portfolio project
+            </button>
+            <button class="prompt-chip" data-prompt="How do I format my resume bullets for this role using the Google XYZ formula?">
+              Resume bullet formula
+            </button>
+            <button class="prompt-chip" data-prompt="Am I ready for an entry-level or internship interview?">
+              Interview readiness check
+            </button>
+          </div>
+
+          <form class="chat-input-row" id="chatForm">
+            <input
+              type="text"
+              id="chatInput"
+              class="chat-input"
+              placeholder="Ask your Career Advisor (e.g. 'How do I prepare for technical interviews?')..."
+              autocomplete="off"
+            >
+            <button type="submit" class="btn btn-primary" id="chatSubmitBtn">
+              Send &rarr;
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= TAB 7: CAREER EXPLORER ================= -->
+      <section class="tab-panel" id="tab-explorer">
+        <div class="explorer-filters-bar">
+          <input
+            type="text"
+            id="explorerSearchInput"
+            class="search-input"
+            placeholder="Search 16 career tracks by title, skill, or keyword (e.g. Python, Cloud, Security, Design)..."
+          >
+          <select id="explorerCategoryFilter" class="filter-select">
+            <option value="ALL">All Categories</option>
+            <option value="Software Engineering">Software Engineering</option>
+            <option value="Artificial Intelligence">Artificial Intelligence</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Data Engineering">Data Engineering</option>
+            <option value="Cloud & Infrastructure">Cloud & Infrastructure</option>
+            <option value="Security">Security</option>
+            <option value="Design">Design</option>
+            <option value="Product & Strategy">Product & Strategy</option>
+          </select>
+        </div>
+
+        <div class="explorer-grid" id="explorerGridContainer">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ================= MULTI-STEP ASSESSMENT MODAL ================= -->
+  <div class="modal-overlay" id="assessmentModal" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-step-indicator">
+          <span class="step-label" id="modalStepLabel">Step 1 of 5 • Background & Education</span>
+          <button type="button" id="closeModalBtn" style="background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--text-muted);">&times;</button>
+        </div>
+        <div class="progress-bar-bg" style="margin-bottom:0;">
+          <div class="progress-bar-fill" id="modalProgressBar" style="width: 20%;"></div>
+        </div>
+      </div>
+
+      <form id="assessmentForm" class="modal-body">
+
+        <!-- STEP 1: Background & Education -->
+        <div class="wizard-step active" data-step="1">
+          <h2 style="font-size:1.25rem; font-weight:800; margin-bottom:8px;">Background & Education</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:20px;">
+            Help us understand your current academic stage and foundation.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label" for="formFullName">Full Name</label>
+            <input type="text" id="formFullName" class="form-input" placeholder="e.g. Alex Rivera" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formEducationLevel">Current Academic Stage</label>
+            <select id="formEducationLevel" class="form-select">
+              <option value="High School Student (Class 10-12)">High School Student (Class 10-12)</option>
+              <option value="College / University Student" selected>College / University Student</option>
+              <option value="Recent Graduate / Fresher">Recent Graduate / Fresher</option>
+              <option value="Career Transitioner / Early Pro">Career Transitioner / Early Pro</option>
+              <option value="Self-Taught Developer">Self-Taught Developer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formDegreeOrStream">Degree or Stream</label>
+            <input type="text" id="formDegreeOrStream" class="form-input" placeholder="e.g. Computer Science, Information Technology, Self-Taught">
           </div>
         </div>
 
-        <div class="results-grid" id="results"></div>
-        <div class="comparison-board" id="comparisonBoard"></div>
-      </section>
-    </main>
+        <!-- STEP 2: Technical & Core Skills -->
+        <div class="wizard-step" data-step="2" style="display:none;">
+          <h2 style="font-size:1.25rem; font-weight:800; margin-bottom:8px;">Technical & Core Skills</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:20px;">
+            Choose technologies you know or have built projects with.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label">Programming Languages & Technologies</label>
+            <div class="selectable-pills-grid" id="skillsPillsGrid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formCustomSkills">Additional Skills or Tools</label>
+            <input type="text" id="formCustomSkills" class="form-input" placeholder="e.g. Docker, Prisma, GraphQL, Next.js (comma-separated)">
+          </div>
+        </div>
+
+        <!-- STEP 3: Domain Interests -->
+        <div class="wizard-step" data-step="3" style="display:none;">
+          <h2 style="font-size:1.25rem; font-weight:800; margin-bottom:8px;">Domain Interests</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:20px;">
+            Select domains you find engaging and want to build in.
+          </p>
+
+          <div class="form-group">
+            <div class="selectable-pills-grid" id="domainPillsGrid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formInterestsText">Describe what you enjoy building or exploring</label>
+            <textarea id="formInterestsText" class="form-textarea" rows="3" placeholder="e.g. I love building web apps, experimenting with AI LLMs, and solving algorithmic problems."></textarea>
+          </div>
+        </div>
+
+        <!-- STEP 4: Experience & Proof -->
+        <div class="wizard-step" data-step="4" style="display:none;">
+          <h2 style="font-size:1.25rem; font-weight:800; margin-bottom:8px;">Projects & Hands-On Work</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:20px;">
+            Mention projects you've built, coursework, or internships.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label" for="formExperienceDescription">Key Projects & Hands-On Work</label>
+            <textarea id="formExperienceDescription" class="form-textarea" rows="4" placeholder="e.g. Built a full-stack React note app with auth, and wrote a Python web scraper."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formStrengthsText">Your Greatest Strengths</label>
+            <input type="text" id="formStrengthsText" class="form-input" placeholder="e.g. Problem solving, quick learner, attention to detail">
+          </div>
+        </div>
+
+        <!-- STEP 5: Work Style & Ambitions -->
+        <div class="wizard-step" data-step="5" style="display:none;">
+          <h2 style="font-size:1.25rem; font-weight:800; margin-bottom:8px;">Career Goals & Work Style</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:20px;">
+            Define your target ambition and preferred working environment.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label" for="formWorkStyle">Preferred Work Style</label>
+            <select id="formWorkStyle" class="form-select">
+              <option value="analytical">Analytical & Problem-Focused (Deep dive into logic & systems)</option>
+              <option value="practical">Practical & Product-Driven (Rapid prototyping & real users)</option>
+              <option value="creative">Creative & Human-Centered (Design, aesthetics & UX)</option>
+              <option value="collaborative">Strategic & Collaborative (Product leadership & teams)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formCareerGoals">Target Career Goal</label>
+            <textarea id="formCareerGoals" class="form-textarea" rows="3" placeholder="e.g. Secure a junior software developer role at a tech startup within 6 months."></textarea>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="prevStepBtn" style="display:none;">&larr; Back</button>
+        <div style="display:flex; gap:10px; margin-left:auto;">
+          <button type="button" class="btn btn-primary" id="nextStepBtn">Continue &rarr;</button>
+          <button type="button" class="btn btn-primary" id="submitAssessmentBtn" style="display:none;">
+            Synthesize Career Trajectory &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <template id="resultCardTemplate">
-    <article class="result-card">
-      <div class="result-top">
+  <!-- Professional Footer -->
+  <footer class="footer" id="methodology">
+    <div class="container">
+      <div class="footer-grid">
         <div>
-          <p class="result-label">Career path</p>
-          <h3 class="career-title"></h3>
+          <div class="brand" style="margin-bottom:14px;">
+            <div class="brand-icon" style="background:var(--primary); width:32px; height:32px; font-size:0.9rem;">CP</div>
+            <span class="brand-title" style="color:white;">Career Intelligence</span>
+          </div>
+          <p class="footer-copy">
+            A personal career intelligence platform combining multi-factor matching, skill-gap analysis, personalized learning roadmaps, and AI mentorship.
+          </p>
         </div>
-        <div class="match-pill"></div>
-      </div>
-      <p class="career-summary"></p>
-      <div class="insight-strip">
-        <div class="insight-box">
-          <span>Why this fits</span>
-          <strong class="fit-reason"></strong>
-        </div>
-        <div class="insight-box">
-          <span>Ideal stream</span>
-          <strong class="fit-stream"></strong>
-        </div>
-      </div>
-      <div class="tag-group skills-group"></div>
-      <div class="roadmap-block">
-        <p class="roadmap-title">Roadmap</p>
-        <ol class="roadmap-list"></ol>
-      </div>
-    </article>
-  </template>
 
-  <script src="script.js"></script>
+        <div>
+          <h4 style="font-size:0.9rem; font-weight:700; margin-bottom:12px; color:white;">Platform Modules</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:0.85rem; color:var(--text-subtle);">
+            <li><a href="#app" class="nav-link" data-tab="overview">Career Overview</a></li>
+            <li><a href="#app" class="nav-link" data-tab="matches">Match Engine</a></li>
+            <li><a href="#app" class="nav-link" data-tab="gaps">Skill Gap Analysis</a></li>
+            <li><a href="#app" class="nav-link" data-tab="roadmap">Learning Roadmaps</a></li>
+            <li><a href="#app" class="nav-link" data-tab="projects">Portfolio Blueprints</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-size:0.9rem; font-weight:700; margin-bottom:12px; color:white;">Methodology & Privacy</h4>
+          <p style="font-size:0.82rem; color:var(--text-subtle); line-height:1.6;">
+            Career compatibility calculations represent algorithmic estimates based on candidate-provided inputs. All profile data is saved locally in your browser.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 AI Career Intelligence Platform.</p>
+        <p>Offline Guidance Engine & Cloud AI Ready.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Entry Script as ES Module -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>

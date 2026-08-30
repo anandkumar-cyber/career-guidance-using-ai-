@@ -1,13 +1,22 @@
 {
-  "name": "career-assistant",
-  "version": "1.0.0",
-  "description": "Career Assistant website with a styled frontend and AI-assisted backend recommendations.",
+  "name": "ai-career-intelligence-platform",
+  "version": "2.0.0",
+  "description": "Production-grade AI Career Intelligence Platform featuring multi-factor matching, skill gap analysis, phased 6-month roadmaps, and contextual AI mentorship.",
   "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "test": "node tests/test-runner.js"
   },
+  "keywords": [
+    "career-intelligence",
+    "ai-guidance",
+    "skill-gap-analysis",
+    "learning-roadmap",
+    "llm-advisor",
+    "career-development"
+  ],
   "dependencies": {
     "dotenv": "^17.3.1",
     "express": "^5.1.0",

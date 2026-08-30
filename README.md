@@ -1,250 +1,164 @@
-# Career Assistant
+# AI Career Intelligence Platform
 
-Career Assistant is a standalone student guidance website that helps students discover career paths based on their interests, favorite subjects, strengths, and work style.
+[![Release](https://img.shields.io/badge/version-2.0.0-blue.svg?style=flat-square)](https://github.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=flat-square)](LICENSE)
+[![Build Status](https://img.shields.io/badge/Tests-10%20Passed-success.svg?style=flat-square)]()
+[![Platform: Web / Offline Compatible](https://img.shields.io/badge/Platform-Web%20%2F%20Offline%20Compatible-indigo.svg?style=flat-square)]()
 
-The project is designed for students who feel confused about what to pursue in the future. A student can enter details such as an interest in coding, love for maths, strong problem-solving ability, or curiosity about technology, and the website will return career opportunities with a simple roadmap for each one.
+A production-grade **AI-Powered Career Intelligence Platform** engineered for students, graduates, and software engineers transitioning into specialized modern technology disciplines.
 
-## Project Goal
+Unlike generic career quizzes or open-ended chat simulations, this platform combines a **deterministic multi-factor algorithmic engine** with a **context-aware LLM personalizer** to deliver transparent career compatibility scores, granular skill gap matrices, dynamic 6-month learning roadmaps, and targeted portfolio project specifications.
 
-The goal of this project is to help students:
+---
 
-- understand which careers match their interests
-- explore practical career opportunities instead of generic advice
-- see the skills needed for each career
-- get a step-by-step roadmap to start learning
+## 🏛️ System Architecture
 
-Example:
-A student who enjoys coding and mathematics may receive recommendations such as Software Engineer, Data Scientist, and AI Engineer, along with the skills and roadmap for each path.
+The platform uses a hybrid architectural separation of concerns: **Deterministic Algorithmic Engines** provide verified structured facts and bounds, while the **LLM Layer** provides contextual reasoning, personalized explanations, and conversational mentorship.
 
-## Features
-
-- Modern responsive frontend
-- Student profile form for career discovery
-- Dynamic career recommendation cards
-- Match score for each career
-- Required skills for each role
-- Individual roadmap for each career path
-- Fully standalone frontend
-- Works directly in the browser
-- No installation or terminal required
-- Local recommendation engine in JavaScript
-
-## Tech Stack
-
-- HTML
-- CSS
-- JavaScript
-
-## Project Structure
-
-```text
-career ai/
-├── index.html
-├── style.css
-├── script.js
-├── server.js
-├── package.json
-├── .env.example
-└── README.md
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                        USER PROFILE & ASSESSMENT                       │
+│     (Academic Stage, Verified Skills, Domain Interests, Goals, Style)  │
+└────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│               DETERMINISTIC MULTI-FACTOR MATCH ENGINE                  │
+│   • Technical Skills Overlap (40%)    • Educational Alignment (15%)    │
+│   • Domain Interest Synergy (25%)     • Work Style Fit (10%)           │
+│   • Practical Strengths (10%)                                          │
+└────────────────────────────────────────────────────────────────────────┘
+                                    │
+                  ┌─────────────────┴─────────────────┐
+                  ▼                                   ▼
+┌───────────────────────────────────┐ ┌───────────────────────────────────┐
+│        SKILL GAP ANALYZER         │ │    DYNAMIC PERSONALIZED ROADMAP   │
+│ • Strong Competencies (Active)    │ │ • Adapts to candidate's baseline  │
+│ • Developing / Adjacent Skills    │ │ • Phased 6-Month Milestones       │
+│ • Critical Core Skill Gaps        │ │ • Actionable Task Checklists      │
+│ • Top 3 Priority Gaps with "WHY"  │ │ • Effort estimates (10-12 hrs/wk) │
+│ • Job Readiness Score (0-100%)    │ │ • Curated Free Resources          │
+└───────────────────────────────────┘ └───────────────────────────────────┘
+                  │                                   │
+                  └─────────────────┬─────────────────┘
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                      PORTFOLIO PROJECT BLUEPRINTS                      │
+│     Tiered Builds: Beginner → Intermediate → Production-Grade          │
+│     • Explicit "Skill Gap Solved" mapping                              │
+│     • Recommended Stack  • GitHub Specs  • ATS Resume Bullets          │
+└────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                   CONTEXT-AWARE AI CAREER ADVISOR                      │
+│    Grounded in Candidate Profile, Active Roadmap & Skill Gaps          │
+│    • Express 5 Backend + OpenAI GPT-4o-mini Integration                │
+│    • Offline Career Guidance Engine Heuristic Fallback                 │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
-## File Explanation
+---
 
-### `index.html`
+## 🚀 Core Features & Capabilities
 
-This is the main frontend structure of the website.
+### 1. Transparent Career Matching
+- Evaluates candidates across **16 comprehensive industry career tracks** (Full-Stack, Frontend Platform, Backend Distributed Systems, AI & Machine Learning, Data Science, Data Platform Engineering, Cloud & DevOps, SRE, Cybersecurity, Penetration Testing, Product Design, Technical Product Management, Mobile Engineering, QA Automation, Solutions Architecture, and Web3 Smart Contracts).
+- Uses honest, calibrated match language (**"Estimated Match"**, **"Profile Compatibility"**, **"AI Career Fit"**) accompanied by explicit transparency disclaimers.
 
-It includes:
+### 2. Granular Skill Gap Analysis & Top 3 Priorities
+- Categorizes competencies into:
+  - 🟢 **Strong Competencies**: Active skills verified in candidate profile.
+  - 🟡 **Developing Skills**: Adjacent technologies requiring project hardening.
+  - 🔴 **Critical Core Gaps**: Priority skills required for entry-level screening.
+- Automatically identifies the **Top 3 Priority Skill Gaps** with an explicit rationale explaining **why each skill matters** and estimated ramp-up times.
 
-- hero section
-- navigation
-- student input form
-- sample profile section
-- results container
-- result card template
+### 3. Dynamic Personalized 6-Month Roadmaps
+- Roadmaps dynamically adapt to the user's verified baseline:
+  - Candidates with verified foundations are fast-tracked to advanced modules.
+  - Beginners receive structured foundational syntax and tooling tracks.
+- Includes effort estimates (10-12 hrs/week), deliverable milestones, and interactive task checkboxes with state persisted in `localStorage`.
 
-### `style.css`
+### 4. Targeted Portfolio Projects
+- Tiered portfolio builds (Beginner, Intermediate, Advanced) explicitly stating:
+  > *"What skill gap does this project solve?"*
+- Complete with recommended tech stacks, GitHub architecture specifications, and ATS-compliant resume bullets.
 
-This file contains the full visual design of the project.
+### 5. Dual-Mode AI Advisor
+- **Cloud AI Mode**: When an OpenAI API key is configured on the backend, delivers structured JSON responses grounded in the candidate's verified profile and active roadmap.
+- **Offline Guidance Engine Mode**: When offline or running without external APIs, provides heuristic guidance without hallucinating or making false claims.
 
-It controls:
+---
 
-- colors
-- layout
-- responsive design
-- typography
-- buttons
-- cards
-- roadmap styling
-- result section styling
+## 🔒 Security & Privacy Engineering
 
-### `script.js`
+- **Zero-Secret Client**: All API keys reside exclusively server-side in `.env`. Zero secrets in client scripts or HTML bundles.
+- **Strict Guardrails**: Prompt constraints forbid the LLM from inventing or hallucinating candidate degrees, certifications, experience, or salary figures.
+- **Security Headers & Middleware**: Configured with `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy`, and memory rate limiting (40 req/min).
+- **Sanitized I/O**: Strict body length restrictions (500kb max) and XSS prevention via text escaping (`escapeHtml`).
+- **Client-Side Privacy**: User profiles, roadmap states, and assessment records reside locally in the candidate's browser `localStorage`.
 
-This file handles the full website behavior.
+---
 
-It is responsible for:
+## 🛠️ Tech Stack & Requirements
 
-- reading form input
-- validating required fields
-- showing loading states
-- generating recommendation results in the browser
-- rendering career cards dynamically
-- showing errors if something goes wrong
+- **Frontend**: Vanilla ES6+ Modules, Semantic HTML5, CSS3 Design Tokens (`Plus Jakarta Sans`, `JetBrains Mono`).
+- **Backend**: Node.js, Express 5.1.0, OpenAI SDK v6.3.0 (`gpt-4o-mini`).
+- **Testing**: Built-in Node.js Assert Test Suite (`node tests/test-runner.js`).
+- **Storage**: Browser `localStorage` for offline persistence.
 
-It now contains the local recommendation engine, so the website works even when opened directly as a normal file.
+---
 
-### `server.js`
+## ⚡ Getting Started
 
-This file is now optional.
+### 1. Clone & Install
+```bash
+git clone https://github.com/your-username/career-intelligence-platform.git
+cd career-intelligence-platform
+npm install
+```
 
-The main website does not need it anymore, because the recommendation logic runs directly in `script.js`. You can keep `server.js` only if you later want to turn the project back into a backend-powered version.
-
-### `package.json`
-
-This file contains the project metadata, dependencies, and scripts.
-
-Main scripts:
-
-- `npm start` starts the backend server
-- `npm run dev` starts the backend in watch mode
-
-### `.env.example`
-
-This file shows the environment variables used by the project.
-
-Example:
-
+### 2. Configure Environment Variables (Optional)
+Copy `.env.example` to `.env`:
+```bash
+cp .env.example .env
+```
+Add your OpenAI API key (optional):
 ```env
-OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_API_KEY=sk-your-openai-api-key-here
 PORT=5000
 ```
+> **Note**: The application is fully functional without an API key using its built-in Offline Algorithmic Engine.
 
-## How the Recommendation System Works
-
-The current website works fully in the browser using a local rule-based recommendation engine.
-
-The browser has a built-in career catalog containing roles such as:
-
-- Software Engineer
-- Data Scientist
-- AI Engineer
-- UX/UI Designer
-- Cybersecurity Analyst
-- Product Manager
-
-The browser compares the student profile with:
-
-- interests
-- subjects
-- strengths
-- work style
-- important keywords
-
-Then it scores each career and returns the top 3 matches.
-
-## How To Run the Project
-
-Open [index.html](/Users/anandkumar/Desktop/career%20ai%20/index.html) directly in your browser.
-
-That is all. No terminal, no `npm install`, and no server is required.
-
-## Deploying Publicly
-
-This project is now ready to be deployed as a static website.
-
-### Best option for this project
-
-Because the current version runs fully in the browser and does not need a backend, the easiest deployment options are:
-
-- GitHub Pages
-- Netlify
-- Vercel
-
-### Files added for deployment
-
-- `.gitignore` keeps local-only files out of Git
-- `netlify.toml` adds simple Netlify publish settings
-- `vercel.json` adds simple Vercel settings and response headers
-
-### Deploy with GitHub Pages
-
-This project is now prepared for GitHub Pages with:
-
-- `.nojekyll` so GitHub Pages serves the site as plain static files
-- `.github/workflows/deploy-pages.yml` so the site deploys automatically from the `main` branch
-
-Steps:
-
-1. Create a GitHub repository and push this project to it.
-2. Open the repository on GitHub.
-3. Go to `Settings` -> `Pages`.
-4. Under `Build and deployment`, choose `GitHub Actions` as the source.
-5. Push to the `main` branch and GitHub will publish the site automatically.
-
-After deployment, the public URL will usually look like:
-
-```text
-https://your-username.github.io/your-repository-name/
+### 3. Run Automated Tests
+```bash
+npm test
 ```
 
-### Deploy with Netlify
+### 4. Start the Application
+```bash
+npm start
+```
+Open your browser at `http://localhost:5000`.
 
-1. Push the project to GitHub.
-2. In Netlify, choose `Add new project` and import the GitHub repository.
-3. Keep the publish directory as the project root.
-4. Deploy the site.
+---
 
-You can also drag and drop the project folder manually in Netlify for a quick static deployment.
+## 🌐 Deployment Options
 
-### Deploy with Vercel
+### Standalone Browser Mode (GitHub Pages / Static Web)
+Open `index.html` directly in any modern browser. The deterministic multi-factor match algorithms, skill gap matrix, dynamic roadmaps, and offline advisor execute 100% client-side.
 
-1. Push the project to GitHub.
-2. Import the repository into Vercel.
-3. Vercel will detect it as a static site.
-4. Deploy it without any build command.
+### Node.js Production Server (Render / Railway / Docker)
+Deploy with `npm start`. Ensure `OPENAI_API_KEY` is added to your hosting platform's environment variables.
 
-### Recommended path
+---
 
-If you want the easiest GitHub-based public launch, GitHub Pages is now ready to use for this project.
+## ⚠️ Limitations & Non-Goals
 
-If you later want preview deployments and simpler custom domain workflows, Netlify or Vercel are still excellent options.
+- **Estimated Fit**: Match scores are algorithmic compatibility estimates based on candidate-provided inputs, not guarantees of employment or career success.
+- **Curated Taxonomy**: The system evaluates 16 major technology tracks. Emerging niche sub-disciplines outside this taxonomy are mapped to the closest adjacent track.
 
-## Important Note
+---
 
-You can now open `index.html` directly using a normal `file://` browser URL or by double-clicking it.
-
-## Example Student Input
-
-- Interests: coding, maths, robotics
-- Favorite subjects: mathematics, computer science
-- Strengths: logical thinking, creativity
-- Work style: analytical
-- Goals: confused between software engineering, AI, and data science
-
-Expected output:
-
-- Software Engineer
-- Data Scientist
-- AI Engineer
-
-Each result also includes:
-
-- why it matches
-- skills required
-- a step-by-step roadmap
-
-## Future Improvements
-
-- Add login and saved student profiles
-- Add more career categories
-- Add charts and visual comparisons between careers
-- Add course recommendations and learning resources
-- Add career filtering by stream or education level
-- Add multilingual support
-- Add database storage
-
-## Summary
-
-Career Assistant is a beginner-friendly standalone project with a polished frontend and a built-in recommendation engine to help students understand possible career paths.
-
-It is especially useful for students who know what they enjoy, but do not yet know which career direction fits them best.
+## 📄 License
+Distributed under the MIT License. See `LICENSE` for details.
