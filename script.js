@@ -448,7 +448,7 @@ function renderMatches() {
       const c = rec.careerDetails;
 
       return `
-      <article class="widget-card" style="margin-bottom:0; border: ${isSelected ? "2px solid var(--primary)" : "1px solid var(--border)}">
+      <article class="widget-card" style="margin-bottom:0; border: ${isSelected ? "2px solid var(--primary)" : "1px solid var(--border)"}">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
           <div>
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
